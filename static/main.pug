@@ -1,0 +1,67 @@
+//- doctype html
+//- html
+//-     head
+//-         meta(charset='utf-8')
+//-         title About 
+//-     body
+//-         header 턴제 게임
+//-         form#start-screen
+//-             input#name-input(placeholder='영웅 이름을 입력하세요', autofucos)
+//-             button#start 시작
+//-         #screen
+//-             #hero-stat
+//-                 span#hero-name
+//-                 span#hero-level
+//-                 span#hero-hp
+//-                 span#hero-xp
+//-                 span#hero-att
+//-             form#game-menu(style='display:none;')
+//-                 menu-1 1.Adventure
+//-                 menu-2 2.Rest
+//-                 menu-3 3.Quit
+//-                 input#menu-input(name='menuInput')
+//-                 button#menu-button Input
+//-             form#battle-menu(style='display:none;')
+//-                 #battle-1 1.Attack
+//-                 #battle-2 2.Recovery
+//-                 #battle-3 3.Run
+//-                 input#menu-input(name='battleInput')
+//-                 button#battle-button Input
+//-             #message
+//-             #monster-stat
+//-                 span#monster-name
+//-                 span#monster-hp
+//-                 span#monster-att
+//-         footer Copyright TonyPark. All Right Reserved.
+//-         script(src='turn.js')
+extends ./layout.pug
+block title
+    title 턴제 게임
+block content
+    form#start-screen
+        input#name-input(placeholder='영웅 이름을 입력하세요', autofucos)
+        button#start 시작
+    #screen
+        #hero-stat
+            span#hero-name
+            span#hero-level
+            span#hero-hp
+            span#hero-xp
+            span#hero-att
+        form#game-menu(style='display:none;')
+            menu-1 1.Adventure
+            menu-2 2.Rest
+            menu-3 3.Quit
+            input#menu-input(name='menuInput')
+            button#menu-button Input
+        form#battle-menu(style='display:none;')
+            #battle-1 1.Attack
+            #battle-2 2.Recovery
+            #battle-3 3.Run
+            input#menu-input(name='battleInput')
+            button#battle-button Input
+        #message
+        #monster-stat
+            span#monster-name
+            span#monster-hp
+            span#monster-att

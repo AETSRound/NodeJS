@@ -62,6 +62,8 @@ const app = express();
 const route = require('./router.js');
 const path = require('path');
 
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'static'));
 app.use(express.static(path.join(__dirname, 'static'))); 
 app.use('/', route);
 
