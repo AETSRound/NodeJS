@@ -13,20 +13,15 @@ function solution(N, stages){
             else{
                 fMap[stage] = 1;
             }
-        }else{
-            fMap[stage-1] = 0;
         }
     }
     
-    for(let i =0; i < N; i++){
-        if(fMap[i+1]){
-
-        }else{
+    for(let i = 0; i < N; i++){
+        if(!fMap[i+1]){
             fMap[i+1] = 0;
         }
     }
     let sortList = [];
-
     let _frate = {};
 
     for(let i in fMap){
