@@ -6,32 +6,40 @@ function solution(list){
     const ENTER = "Enter";
     //채팅방 퇴장
     const LEAVE = "Leave";
-    //닉네임 변경
-    const CHANGE = "Change";
 
     let msgMap = {
-        Enter:"들어왔습니다",
-        Leave:"나갔습니다",
+        Enter:"들어왔습니다.",
+        Leave:"나갔습니다.",
     }
-    let msgList = [];
-    // Action UID Nam 으로 구성된 string이 배열의 element
-    let systemMap = {};
-    for(let _map of tList){
-        let _tMap = [];
-        _tMap = _map.split(" ");    
-        console.log(_tMap);
-        if(_tMap[0]===ENTER){
-            systemMap[_tMap[1]] = _tMap[2];
-            msgList.push(`${_tMap[2]}님이 ${msgMap[_tMap[0]]}`);
-        }
-        else if(_tMap[0]===LEAVE){
-            msgList.push(`${_tMap[2]}님이 ${msgMap[_tMap[0]]}`);
-        }
-        else{
-            systemMap[_tMap[1]] = _tMap[2];
-        }
 
+    let idList = {};
+
+    const format = "i님이 a";
+
+    let msgList = [];
+
+    // Action UID Nam 으로 구성된 string이 배열의 element
+    let _tMap = [];
+    let msg = '';
+
+    for(let _map of tList){
+        _tMap = _map.split(" ");    
+        if (_tMap[2]){
+            idList[_tMap[1]] = _tMap[2];
+        }
+        
     }
+    console.log(idList)
+
+    for(let _map of tList){
+        _tMap = _map.split(" ");    
+        if(_tMap[0]===ENTER || _tMap[0]===LEAVE){
+            msg = format.replace('a', msgMap[_tMap[0]]);
+            msg = msg.replace('i', idList[_tMap[1]]);
+            msgList.push(msg);
+        }
+    }
+
     console.log(msgList);
     //메세지 넣는거랑 map의 id의 일관성 유지하는걸 따로할 필요가 있다.
 
