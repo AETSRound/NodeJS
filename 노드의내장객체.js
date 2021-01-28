@@ -104,19 +104,89 @@ setImmediate() 는 바로 실행하는 함수.
 7. __filename, __dirname
 */
 
-console.log(__filename);
-console.log(__dirname);
+// console.log(__filename);
+// console.log(__dirname);
 
-console.log(this === module.exports);  //global ? => 아니다.  module.exports 이다.
+// console.log(this === module.exports);  //global ? => 아니다.  module.exports 이다.
 
-//이걸 사용해서 exports 대신 this 를 쓸수 있다.
-//this.odd = odd;
-//this.even = even;
-//처럼.. 근데, 헷갈리기도해서 잘 안쓴다.
+//8. module.exports
+//9. this
 
-function a(){
-    console.log(this === global);
-}
-a();
+/*이걸 사용해서 exports 대신 this 를 쓸수 있다.
+this.odd = odd;
+this.even = even;
+처럼.. 근데, 헷갈리기도해서 잘 안쓴다.
+*/
+// function a(){
+//     console.log(this === global);
+// }
+// a();
 
 // 함수 내부의 this 만 global
+
+
+/*
+10. require
+require 가 맨위일 필요는 없다.
+
+but, import - export 의 경우 import 가 최상단에 있어야 한다.
+*/
+
+// module.exports = '나를 찾아서.';
+// require('./var.js');
+
+//초보가 알기엔 과한내용...
+//require.cache 나 require.main 은...
+// console.log(require.cache);
+// console.log(require.main);
+// console.log(require.main.filename);
+
+/*
+한번 load한 모듈들은
+require.cache 에 저장해둔다.
+내부적인 부분에 가깝다.
+
+11. 순환참조
+dep1.js 와 dep2.js 인경우
+객체들을 찾아내어 해당 객체를 빈객체로 변환 시켜 버린다.
+=> node 가 순환참조를 막아내 무한loop를 방어한다.
+=> 알고 쓰면 괜찬지만, 복잡하니까 최대한 피해주는것이 좋다.
+*/
+
+// const dep1 = require('./dep1');
+// const dep2 = require('./dep2');
+// //이경우에 dep2.js 내부의 require 진행시 module.exports = {} 로 빈객체로 바꿔버림
+// dep1();
+// dep2();
+
+/*
+12. process
+precess.cwd() 정도는 자주 쓴다.
+
+파일 경로 알아내는법
+__filename
+__dirname
+process.cwd() 
+이 세가지가 있다.
+
+13. process.env
+const secretId = process.env.SECRET_ID;
+const secretCode = process.env.SECRET_CODE;
+
+14. process.nextTick
+*/
+setImmediate( ()=> {console.log('이미디에이트');} );
+process.nextTick(  ()=> {console.log('넥스틱');} );
+setTimeout(  ()=> {console.log('타임아웃');}, 0 );
+Promise.resolve().then(  ()=> {console.log('프로미스');} );
+
+//넥스틱, 프로미스 > 타임아웃 || 이미디에이트
+
+// 타임아웃과 이미디에이트는 랜덤...
+/*
+넥스틱과 프로미스는 마이크로 테스크로 우선순위가 높다.
+
+15. process.exit
+process.exit(0)   --> 에러없이 종료
+process.exit(1)   --> 에러와 함께 종료 => 서버의 경우 에러 발생했다는 것을 알리고 종료할때 사용
+*/
