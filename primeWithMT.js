@@ -1,3 +1,8 @@
+// 성능향상은 되지만, 코드길이가 길어지고,
+// 고려할 사항도 늘어난다.
+// 할 수는 있지만, 되도록 노드로는 하지않는 것을 추천.
+// 잘 할 수 있다면 해도 상관 없다.
+
 const {Worker, isMainThread, parentPort, workerData} = require('worker_threads');
 
 const min = 2;
@@ -24,7 +29,7 @@ getPrimeNumbs()
 
 if(isMainThread){
     const max = 10000000;
-    const threadsCount = 8;
+    const threadsCount = 10;
     const threads = new Set();
     const range = Math.ceil((max - min) / threadsCount);
     let start = min;
